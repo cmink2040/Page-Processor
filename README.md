@@ -51,7 +51,7 @@ Other problems
 
 ## Usage Notes
 
-1. Setting up venv and dependencies
+### 1. Setting up venv and dependencies
 
 Navigate to the app directory and run:
 
@@ -65,7 +65,7 @@ Navigate back to the root directory and install required dependencies.
 
 ```pip install -r reqs.txt```
 
-2. Environment Setup
+### 2. Environment Setup
 
 To setup the environment, create a file called .env in the app directory. 
 Here you will define 6 variables: password, user, url, dbtype, dbname, and tinymce_url. 
@@ -78,21 +78,21 @@ For the application to work, make sure dbtype is set to "postgres"
 
 Finally, register for a cloud-provider which provides a postgres database. When done, you will find a link 
 to connect that looks something like this:
-```postgresql://[DB USER]:%[PASSWORD]@[URL]/[DatabaseName]```
+```postgresql://[DB USER]:[PASSWORD]@[URL]/[DatabaseName]```
 
 Set these sections of the url accordingly in the .env.
 
-3. Running
+### 3. Running
 
 Either run run.sh or the command, 
 ```uvicorn app.main:app --host 0.0.0.0```
 
-4. Post Setup
+### 4. Post Setup
 
 Navigate to the URL. It does not have a functional GUI to create users, so go to the URL/docs, and use the "Try It" button in the FastAPI docs. 
 The app is now ready, but do note that to delete pages, buckets, or users, you must use SQL and execute it on the database.
 
-Or manually post to /create-user api with a body user and password.
+Or manually post to /users/create api with a body user and password.
 
 ## Toolchain and framework
 All new projects must have their toolchain and framework defined before the project starts.
