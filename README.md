@@ -50,12 +50,49 @@ Other problems
 - Word spelling suggestions are very slow and freeze webpage (currently issue with Typo.js)
 
 ## Usage Notes
-Create a venv, install reqs.txt. Create a .env file, and place tinymce url into it.
-Then, create a sqlite3 database in the directory called app.db. and run the following command to bring up the webserver:\
 
+1. Setting up venv and dependencies
+
+Navigate to the app directory and run:
+
+```python -m venv .venv```
+
+Then to activate it, run:
+
+```source ./.venv/bin/activate```
+
+Navigate back to the root directory and install required dependencies.
+
+```pip install -r reqs.txt```
+
+2. Environment Setup
+
+To setup the environment, create a file called .env in the app directory. 
+Here you will define 6 variables: password, user, url, dbtype, dbname, and tinymce_url. 
+Specify variables on new lines like ```VAR_NAME="variable name"```
+
+To setup tinymce_url, go to the website for tinymce and register for an account. After doing so,
+find the url ending in *.min.js. Copy that link and set url to that.
+
+For the application to work, make sure dbtype is set to "postgres"
+
+Finally, register for a cloud-provider which provides a postgres database. When done, you will find a link 
+to connect that looks something like this:
+```postgresql://[DB USER]:%[PASSWORD]@[URL]/[DatabaseName]```
+
+Set these sections of the url accordingly in the .env.
+
+3. Running
+
+Either run run.sh or the command, 
 ```uvicorn app.main:app --host 0.0.0.0```
 
-Then, navigate to the URL. It does not have a functional GUI to create users, so go to the URL/docs, and use the "Try It" button in the FastAPI docs. The app is now ready, but do note that to delete pages, buckets, or users, you must use SQL and execute it on the app.db.
+4. Post Setup
+
+Navigate to the URL. It does not have a functional GUI to create users, so go to the URL/docs, and use the "Try It" button in the FastAPI docs. 
+The app is now ready, but do note that to delete pages, buckets, or users, you must use SQL and execute it on the database.
+
+Or manually post to /create-user api with a body user and password.
 
 ## Toolchain and framework
 All new projects must have their toolchain and framework defined before the project starts.
