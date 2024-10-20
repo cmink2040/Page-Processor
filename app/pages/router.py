@@ -66,8 +66,8 @@ def update_page(resp: fmodels.PageData, db: Session = Depends(get_db)):
 
     if functions.check_session(resp.username, resp.session, db):
        if functions.verify_bucket_ownership(resp.username, resp.bucketid, db):
-
-            return{"resp":True, "pages":crud.update_page(resp, resp.bucketid, resp.pageid, db)}
+            if len(resp.content) < 30000:
+                return{"resp":True, "pages":crud.update_page(resp, resp.bucketid, resp.pageid, db)}
 
     return {"resp":False}
 
